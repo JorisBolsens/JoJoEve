@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "eve-industry": "apps/eve-industry",
+    "eve-industry-e2e": "apps/eve-industry-e2e"
+  }
+}

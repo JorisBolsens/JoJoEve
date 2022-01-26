@@ -1,0 +1,28 @@
+{
+  "root": "apps/eve-industry-e2e",
+  "sourceRoot": "apps/eve-industry-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/eve-industry-e2e/cypress.json",
+        "devServerTarget": "eve-industry:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "eve-industry:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/eve-industry-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["eve-industry"]
+}
