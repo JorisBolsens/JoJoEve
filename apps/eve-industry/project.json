@@ -1,63 +1,37 @@
 {
   "root": "apps/eve-industry",
-  "sourceRoot": "apps/eve-industry/src",
+  "sourceRoot": "apps/eve-industry",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/web:webpack",
+      "executor": "@nrwl/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "compiler": "babel",
-        "outputPath": "dist/apps/eve-industry",
-        "index": "apps/eve-industry/src/index.html",
-        "baseHref": "/",
-        "main": "apps/eve-industry/src/main.tsx",
-        "polyfills": "apps/eve-industry/src/polyfills.ts",
-        "tsConfig": "apps/eve-industry/tsconfig.app.json",
-        "assets": [
-          "apps/eve-industry/src/favicon.ico",
-          "apps/eve-industry/src/assets"
-        ],
-        "styles": [],
-        "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "root": "apps/eve-industry",
+        "outputPath": "dist/apps/eve-industry"
       },
       "configurations": {
-        "production": {
-          "fileReplacements": [
-            {
-              "replace": "apps/eve-industry/src/environments/environment.ts",
-              "with": "apps/eve-industry/src/environments/environment.prod.ts"
-            }
-          ],
-          "optimization": true,
-          "outputHashing": "all",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false
-        }
+        "production": {}
       }
     },
     "serve": {
-      "executor": "@nrwl/web:dev-server",
+      "executor": "@nrwl/next:server",
       "options": {
         "buildTarget": "eve-industry:build",
-        "hmr": true
+        "dev": true
       },
       "configurations": {
         "production": {
           "buildTarget": "eve-industry:build:production",
-          "hmr": false
+          "dev": false
         }
       }
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+    "export": {
+      "executor": "@nrwl/next:export",
       "options": {
-        "lintFilePatterns": ["apps/eve-industry/**/*.{ts,tsx,js,jsx}"]
+        "buildTarget": "eve-industry:build:production"
       }
     },
     "test": {
@@ -66,6 +40,13 @@
       "options": {
         "jestConfig": "apps/eve-industry/jest.config.js",
         "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/eve-industry/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },
